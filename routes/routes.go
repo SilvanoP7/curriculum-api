@@ -11,6 +11,7 @@ func SetupRouter() *gin.Engine {
 	v1 := router.Group("/api/v1")
 	{
 		v1.GET("/ping", handlers.Pong)
+                v1.GET("/db", handlers.DbTest)
 		v1.GET("/getSubjects", handlers.GetSubjects)
 	}
 	return router

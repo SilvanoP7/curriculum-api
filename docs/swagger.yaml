@@ -1,8 +1,24 @@
 basePath: /api/v1
 definitions:
+  models.DbTest:
+    properties:
+      status:
+        type: string
+    type: object
   models.Pong:
     properties:
       status:
+        type: string
+    type: object
+  models.Subjects:
+    properties:
+      keyStage:
+        type: integer
+      purposeOfStudy:
+        type: string
+      subject:
+        type: string
+      subjectId:
         type: string
     type: object
 info:
@@ -10,6 +26,19 @@ info:
   title: curriculum-api
   version: "1.0"
 paths:
+  /db:
+    get:
+      description: Responds with fail or connected status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DbTest'
+      summary: Basic health check to ensure the service can connect to the db
+      tags:
+      - DbTest
   /getSubjects:
     get:
       description: Responds with pong status.
@@ -19,7 +48,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Pong'
+            $ref: '#/definitions/models.Subjects'
       summary: Basic health check to ensure service is responding
       tags:
       - getSubjects

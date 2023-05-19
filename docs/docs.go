@@ -16,6 +16,26 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/db": {
+            "get": {
+                "description": "Responds with fail or connected status",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "DbTest"
+                ],
+                "summary": "Basic health check to ensure the service can connect to the db",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.DbTest"
+                        }
+                    }
+                }
+            }
+        },
         "/getSubjects": {
             "get": {
                 "description": "Responds with pong status.",
@@ -30,7 +50,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Pong"
+                            "$ref": "#/definitions/models.Subjects"
                         }
                     }
                 }
@@ -58,10 +78,35 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "models.DbTest": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
         "models.Pong": {
             "type": "object",
             "properties": {
                 "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Subjects": {
+            "type": "object",
+            "properties": {
+                "keyStage": {
+                    "type": "integer"
+                },
+                "purposeOfStudy": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "subjectId": {
                     "type": "string"
                 }
             }
