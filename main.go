@@ -9,6 +9,7 @@ import (
 
 // @title           curriculum-api
 // @version         1.0
+// @BasePath  /api/v1
 
 func main() {
 	router := routes.SetupRouter()

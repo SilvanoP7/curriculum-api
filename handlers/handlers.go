@@ -27,7 +27,7 @@ func Pong(c *gin.Context) {
 // @Produce      json
 // @Success      200 {object}   models.Pong
 // @Router       /getSubjects [get]
-func getSubjects(c *gin.Context) {
+func GetSubjects(c *gin.Context) {
         var pong models.Pong
         pong.Status = "pong"
 	c.JSON(http.StatusOK, &pong)       
