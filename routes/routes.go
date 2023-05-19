@@ -3,10 +3,15 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/SilvanoP7/curriculum-api/handlers"
+	"github.com/zsais/go-gin-prometheus"
+
+
 )
 
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
+	p := ginprometheus.NewPrometheus("gin")
+        p.Use(router)
 
 	v1 := router.Group("/api/v1")
 	{
