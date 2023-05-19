@@ -57,21 +57,25 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.SubjectContent'
+            items:
+              $ref: '#/definitions/models.SubjectContent'
+            type: array
       summary: Get Subject Contents
       tags:
       - getSubjectContent
   /getSubjects:
     get:
-      description: Responds with pong status.
+      description: Responds with all subjects
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Subjects'
-      summary: Basic health check to ensure service is responding
+            items:
+              $ref: '#/definitions/models.Subjects'
+            type: array
+      summary: Get all subjects
       tags:
       - getSubjects
   /ping:

@@ -31,11 +31,11 @@ func Pong(c *gin.Context) {
 }
 
 // Pong             godoc
-// @Summary      Basic health check to ensure service is responding
-// @Description  Responds with pong status.
+// @Summary      Get all subjects
+// @Description  Responds with all subjects
 // @Tags         getSubjects
 // @Produce      json
-// @Success      200 {object}   models.Subjects
+// @Success      200 {array}   models.Subjects
 // @Router       /getSubjects [get]
 func GetSubjects(c *gin.Context) {
         var fail models.Pong
@@ -80,7 +80,7 @@ func GetSubjects(c *gin.Context) {
 // @Description  Responds with the all subject contents
 // @Tags         getSubjectContent
 // @Produce      json
-// @Success      200 {object}   models.SubjectContent
+// @Success      200 {array}   models.SubjectContent
 // @Router       /getSubjectContent [get]
 func GetSubjectContent(c *gin.Context) {
         var fail models.Pong

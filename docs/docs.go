@@ -50,7 +50,10 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.SubjectContent"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.SubjectContent"
+                            }
                         }
                     }
                 }
@@ -58,19 +61,22 @@ const docTemplate = `{
         },
         "/getSubjects": {
             "get": {
-                "description": "Responds with pong status.",
+                "description": "Responds with all subjects",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "getSubjects"
                 ],
-                "summary": "Basic health check to ensure service is responding",
+                "summary": "Get all subjects",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Subjects"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Subjects"
+                            }
                         }
                     }
                 }
