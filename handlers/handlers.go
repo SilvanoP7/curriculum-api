@@ -10,8 +10,6 @@ import (
 // GetBooks responds with the list of all books as JSON.
 func Pong(c *gin.Context) {
         var pong models.Pong
-        if err := c.BindJSON(&pong); err != nil {
-		return
-	}
-	c.JSON(http.StatusOK, pong)
+        pong.Status = "pong"
+	c.JSON(http.StatusOK, &pong)
 }
