@@ -9,6 +9,19 @@ info:
   title: curriculum-api
   version: "1.0"
 paths:
+  /getSubjects:
+    get:
+      description: Responds with pong status.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Pong'
+      summary: Basic health check to ensure service is responding
+      tags:
+      - getSubjects
   /ping:
     get:
       description: Responds with pong status.
@@ -18,10 +31,8 @@ paths:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/models.Pong'
-            type: array
-      summary: Basic health check to ensure service is respnding
+            $ref: '#/definitions/models.Pong'
+      summary: Basic health check to ensure service is responding
       tags:
-      - hralth
+      - health
 swagger: "2.0"

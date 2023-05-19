@@ -8,5 +8,10 @@ import (
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
 	router.GET("/ping", handlers.Pong)
+
+	v1 := router.Group("/api/v1")
+	{
+		v1.GET("/getSubjects", handlers.getSubjects)
+	}
 	return router
 }

@@ -16,6 +16,26 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/getSubjects": {
+            "get": {
+                "description": "Responds with pong status.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getSubjects"
+                ],
+                "summary": "Basic health check to ensure service is responding",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pong"
+                        }
+                    }
+                }
+            }
+        },
         "/ping": {
             "get": {
                 "description": "Responds with pong status.",
@@ -23,17 +43,14 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "hralth"
+                    "health"
                 ],
-                "summary": "Basic health check to ensure service is respnding",
+                "summary": "Basic health check to ensure service is responding",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/models.Pong"
-                            }
+                            "$ref": "#/definitions/models.Pong"
                         }
                     }
                 }
