@@ -8,6 +8,13 @@ import (
 )
 
 // GetBooks responds with the list of all books as JSON.
+// Pong             godoc
+// @Summary      Basic health check to ensure service is respnding
+// @Description  Responds with pong status.
+// @Tags         hralth
+// @Produce      json
+// @Success      200  {array}  models.Pong
+// @Router       /ping [get]
 func Pong(c *gin.Context) {
         var pong models.Pong
         pong.Status = "pong"
