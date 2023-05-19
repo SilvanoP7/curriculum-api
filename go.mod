@@ -32,9 +32,3 @@ require (
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace (
-	github.com/SilvanoP7/curriculum-api/handlers => ./handlers
-	github.com/SilvanoP7/curriculum-api/models => ./models
-	github.com/SilvanoP7/curriculum-api/routes => ./routes
-)
