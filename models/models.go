@@ -15,3 +15,9 @@ type Subjects struct {
         KeyStage int     `json:"keyStage"`
 	PurposeOfStudy string `json:"purposeOfStudy"`
 }
+
+type SubjectContent struct {
+        SubjectID string `json:"subjectId"`
+        SubjectContent string `json:"subjectContent"`
+        SubjectContentId string `json:"subjectContentId"`
+}

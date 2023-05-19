@@ -10,6 +10,15 @@ definitions:
       status:
         type: string
     type: object
+  models.SubjectContent:
+    properties:
+      subjectContent:
+        type: string
+      subjectContentId:
+        type: string
+      subjectId:
+        type: string
+    type: object
   models.Subjects:
     properties:
       keyStage:
@@ -39,6 +48,19 @@ paths:
       summary: Basic health check to ensure the service can connect to the db
       tags:
       - DbTest
+  /getSubjectContent:
+    get:
+      description: Responds with the all subject contents
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SubjectContent'
+      summary: Get Subject Contents
+      tags:
+      - getSubjectContent
   /getSubjects:
     get:
       description: Responds with pong status.

@@ -75,6 +75,51 @@ func GetSubjects(c *gin.Context) {
 	c.JSON(http.StatusOK, &snbs)       
 }
 
+// Pong             godoc
+// @Summary      Get Subject Contents
+// @Description  Responds with the all subject contents
+// @Tags         getSubjectContent
+// @Produce      json
+// @Success      200 {object}   models.SubjectContent
+// @Router       /getSubjectContent [get]
+func GetSubjectContent(c *gin.Context) {
+        var fail models.Pong
+        psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+        db, err := sql.Open("postgres", psqlInfo)
+
+        rowsRs, err := db.Query("SELECT subject_id, subject_content, subject_content_id FROM subject_content")
+
+        if err != nil {
+                fail.Status = "Failed getting data"
+                c.JSON(http.StatusInternalServerError, &fail)
+                return
+        }
+        defer rowsRs.Close()
+
+        snbs := make([]models.SubjectContent, 0)
+
+
+        // we loop through the values of rows
+        for rowsRs.Next() {
+                snb := models.SubjectContent{}
+                err := rowsRs.Scan(&snb.SubjectID, &snb.SubjectContent, &snb.SubjectContentId)
+                if err != nil {
+                        fail.Status = "Failed getting data"
+                        c.JSON(http.StatusInternalServerError, &fail)
+                        return
+                }
+                snbs = append(snbs, snb)
+        }
+
+        if err = rowsRs.Err(); err != nil {
+                c.JSON(http.StatusOK, &snbs)
+                return
+        }
+
+        db.Close()
+        c.JSON(http.StatusOK, &snbs)
+}
+
 
 // Pong             godoc
 // @Summary      Basic health check to ensure the service can connect to the db

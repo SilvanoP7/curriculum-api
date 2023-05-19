@@ -36,6 +36,26 @@ const docTemplate = `{
                 }
             }
         },
+        "/getSubjectContent": {
+            "get": {
+                "description": "Responds with the all subject contents",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getSubjectContent"
+                ],
+                "summary": "Get Subject Contents",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.SubjectContent"
+                        }
+                    }
+                }
+            }
+        },
         "/getSubjects": {
             "get": {
                 "description": "Responds with pong status.",
@@ -90,6 +110,20 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SubjectContent": {
+            "type": "object",
+            "properties": {
+                "subjectContent": {
+                    "type": "string"
+                },
+                "subjectContentId": {
+                    "type": "string"
+                },
+                "subjectId": {
                     "type": "string"
                 }
             }

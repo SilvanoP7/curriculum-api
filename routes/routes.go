@@ -22,6 +22,7 @@ func SetupRouter() *gin.Engine {
 		v1.GET("/ping", handlers.Pong)
                 v1.GET("/db", handlers.DbTest)
 		v1.GET("/getSubjects", handlers.GetSubjects)
+                v1.GET("/getSubjectContent", handlers.GetSubjectContent)
 	}
 	return router
 }
