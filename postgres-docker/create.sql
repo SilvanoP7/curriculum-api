@@ -40,10 +40,10 @@ FROM '/SubjectContent.csv'
 DELIMITER '|';
 
 COPY objectives(subject_content_id, objective_id, objective)
-FROM '/Objective.csv'
+FROM '/Objectives.csv'
 DELIMITER '|';
 
-COPY sub_objectives( objective_id,sub_objective_id,objective)
+COPY sub_objectives(objective_id,sub_objective_id,sub_objective)
 FROM '/SubObjectives.csv'
 DELIMITER '|';
 
