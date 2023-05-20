@@ -5,9 +5,27 @@ definitions:
       status:
         type: string
     type: object
+  models.Objectives:
+    properties:
+      objective:
+        type: string
+      objectiveId:
+        type: string
+      subjectContentId:
+        type: string
+    type: object
   models.Pong:
     properties:
       status:
+        type: string
+    type: object
+  models.SubObjectives:
+    properties:
+      objectiveId:
+        type: string
+      subObjective:
+        type: string
+      subObjectiveId:
         type: string
     type: object
   models.SubjectContent:
@@ -48,6 +66,36 @@ paths:
       summary: Basic health check to ensure the service can connect to the db
       tags:
       - DbTest
+  /getObjectives:
+    get:
+      description: Responds with the all pbjective
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Objectives'
+            type: array
+      summary: Get Objective
+      tags:
+      - getObjectives
+  /getSubObjectives:
+    get:
+      description: Responds with the all pbjective
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.SubObjectives'
+            type: array
+      summary: Get Sub Objectives
+      tags:
+      - getSubObjectives
   /getSubjectContent:
     get:
       description: Responds with the all subject contents

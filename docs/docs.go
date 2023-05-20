@@ -36,6 +36,52 @@ const docTemplate = `{
                 }
             }
         },
+        "/getObjectives": {
+            "get": {
+                "description": "Responds with the all pbjective",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getObjectives"
+                ],
+                "summary": "Get Objective",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Objectives"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getSubObjectives": {
+            "get": {
+                "description": "Responds with the all pbjective",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getSubObjectives"
+                ],
+                "summary": "Get Sub Objectives",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.SubObjectives"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/getSubjectContent": {
             "get": {
                 "description": "Responds with the all subject contents",
@@ -112,10 +158,38 @@ const docTemplate = `{
                 }
             }
         },
+        "models.Objectives": {
+            "type": "object",
+            "properties": {
+                "objective": {
+                    "type": "string"
+                },
+                "objectiveId": {
+                    "type": "string"
+                },
+                "subjectContentId": {
+                    "type": "string"
+                }
+            }
+        },
         "models.Pong": {
             "type": "object",
             "properties": {
                 "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SubObjectives": {
+            "type": "object",
+            "properties": {
+                "objectiveId": {
+                    "type": "string"
+                },
+                "subObjective": {
+                    "type": "string"
+                },
+                "subObjectiveId": {
                     "type": "string"
                 }
             }

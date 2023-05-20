@@ -21,3 +21,15 @@ type SubjectContent struct {
         SubjectContent string `json:"subjectContent"`
         SubjectContentId string `json:"subjectContentId"`
 }
+
+type Objectives struct {
+        SubjectContentId string `json:"subjectContentId"`
+        ObjectiveId      string `json:"objectiveId"`
+        Objective        string `json:"objective"`
+}
+
+type SubObjectives struct {
+        ObjectiveId      string `json:"objectiveId"`
+        SubOjectiveId    string `json:"subObjectiveId"`
+        SubObjective     string `json:"subObjective"`
+}

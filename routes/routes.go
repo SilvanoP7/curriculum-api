@@ -23,6 +23,8 @@ func SetupRouter() *gin.Engine {
                 v1.GET("/db", handlers.DbTest)
 		v1.GET("/getSubjects", handlers.GetSubjects)
                 v1.GET("/getSubjectContent", handlers.GetSubjectContent)
+                v1.GET("/getObjectives", handlers.GetObjectives)
+                v1.GET("/getSubObjectives", handlers.GetSubObjectives)
 	}
 	return router
 }

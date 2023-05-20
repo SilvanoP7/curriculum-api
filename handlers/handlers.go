@@ -72,7 +72,7 @@ func GetSubjects(c *gin.Context) {
 	}
 
 	db.Close()
-	c.JSON(http.StatusOK, &snbs)       
+	c.JSON(http.StatusOK, &snbs)
 }
 
 // Pong             godoc
@@ -120,6 +120,95 @@ func GetSubjectContent(c *gin.Context) {
         c.JSON(http.StatusOK, &snbs)
 }
 
+// Pong             godoc
+// @Summary      Get Objective
+// @Description  Responds with the all pbjective
+// @Tags         getObjectives
+// @Produce      json
+// @Success      200 {array}  models.Objectives
+// @Router       /getObjectives [get]
+func GetObjectives(c *gin.Context) {
+        var fail models.Pong
+        psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+        db, err := sql.Open("postgres", psqlInfo)
+
+        rowsRs, err := db.Query("SELECT subject_content_id, objective_id, objective FROM objectives")
+
+        if err != nil {
+                fail.Status = "Failed getting data"
+                c.JSON(http.StatusInternalServerError, &fail)
+                return
+        }
+        defer rowsRs.Close()
+
+        snbs := make([]models.Objectives, 0)
+
+
+        // we loop through the values of rows
+        for rowsRs.Next() {
+                snb := models.Objectives{}
+                err := rowsRs.Scan(&snb.SubjectContentId, &snb.ObjectiveId, &snb.Objective)
+                if err != nil {
+                        fail.Status = "Failed getting data"
+                        c.JSON(http.StatusInternalServerError, &fail)
+                        return
+                }
+                snbs = append(snbs, snb)
+        }
+
+        if err = rowsRs.Err(); err != nil {
+                c.JSON(http.StatusInternalServerError, &snbs)
+                return
+        }
+
+        db.Close()
+        c.JSON(http.StatusOK, &snbs)
+}
+
+// Pong             godoc
+// @Summary      Get Sub Objectives
+// @Description  Responds with the all pbjective
+// @Tags         getSubObjectives
+// @Produce      json
+// @Success      200 {array}  models.SubObjectives
+// @Router       /getSubObjectives [get]
+func GetSubObjectives(c *gin.Context) {
+        var fail models.Pong
+        psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+        db, err := sql.Open("postgres", psqlInfo)
+
+        rowsRs, err := db.Query("SELECT objective_id,sub_objective_id,sub_objective FROM sub_objectives")
+
+        if err != nil {
+                fail.Status = "Failed getting data"
+                c.JSON(http.StatusInternalServerError, &fail)
+                return
+        }
+        defer rowsRs.Close()
+
+        snbs := make([]models.SubObjectives, 0)
+
+
+        // we loop through the values of rows
+        for rowsRs.Next() {
+                snb := models.SubObjectives{}
+                err := rowsRs.Scan(&snb.ObjectiveId, &snb.SubOjectiveId, &snb.SubObjective)
+                if err != nil {
+                        fail.Status = "Failed getting data"
+                        c.JSON(http.StatusInternalServerError, &fail)
+                        return
+                }
+                snbs = append(snbs, snb)
+        }
+
+        if err = rowsRs.Err(); err != nil {
+                c.JSON(http.StatusOK, &snbs)
+                return
+        }
+
+        db.Close()
+        c.JSON(http.StatusOK, &snbs)
+}
 
 // Pong             godoc
 // @Summary      Basic health check to ensure the service can connect to the db
