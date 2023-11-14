@@ -1,4 +1,4 @@
-FROM golang:1.19.9 as builder
+FROM golang:1.21.4 as builder
 
 # first (build) stage
 
@@ -9,6 +9,6 @@ RUN CGO_ENABLED=0 go build -o curriculum-api
 
 # final (target) stage
 
-FROM alpine:3.18.0
+FROM alpine:3.18.4
 COPY --from=builder /app/curriculum-api /
 CMD ["/curriculum-api"]
